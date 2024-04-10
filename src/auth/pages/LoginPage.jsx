@@ -4,7 +4,7 @@ import { Google } from "@mui/icons-material"
 import { Button, Grid, Link, TextField, Typography } from "@mui/material"
 import { AuthLayout } from "../layout/AuthLayout";
 import { useForm } from "../../hooks/useForm";
-import { checkingAuthentication, startGoogleSignIn } from "../../store/auth/thunks";
+import {  startGoogleSignIn, startLoginWithEmailPassword } from "../../store/auth/thunks";
 import { useMemo } from "react";
 
 
@@ -23,8 +23,8 @@ export const LoginPage = () => {
     const isAuthenticating = useMemo(()=>status === 'checking', [status])
     const onSubmit = (e)=>{
       e.preventDefault();
-      console.log({formState})
-      dispatch(checkingAuthentication());
+      //! esta no es a acción
+      dispatch(startLoginWithEmailPassword({email, password}));
     }
 
     const onGoogleSignIn = ()=>{
@@ -34,7 +34,7 @@ export const LoginPage = () => {
 
   return (
    <AuthLayout title='Login'>
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="animate__animated animate__fadeIn">
             <Grid container>
               <Grid item xs={12} sx={{mt:2}}>
                 <TextField 

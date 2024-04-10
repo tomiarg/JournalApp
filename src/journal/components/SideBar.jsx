@@ -1,7 +1,10 @@
 import { TurnedInNot } from "@mui/icons-material"
 import { Box, Divider, Drawer, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from "@mui/material"
+import { useCheckAuth } from "../../hooks/useCheckAuth"
+import { useSelector } from "react-redux"
 
 export const SideBar = ({drawerWidth = 240}) => {
+ const{displayName} = useSelector(state=>state.auth)
   return (
     <Box
         component='nav'
@@ -17,8 +20,9 @@ export const SideBar = ({drawerWidth = 240}) => {
         >
           <Toolbar>
             <Typography variant="h6" noWrap component='div'>
-              Tomás Moyano
-                          
+              {
+                displayName
+              }
             </Typography>
 
           </Toolbar>

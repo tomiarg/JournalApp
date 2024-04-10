@@ -9,7 +9,7 @@ import { startCreatingUserWithEmailPassword } from "../../store/auth";
 
 const formData={
     email: '',
-    password: 0,
+    password: '',
     displayName:''
 
 }
@@ -46,7 +46,7 @@ export const RegisterPage = () => {
 
   return (
    <AuthLayout title='Crear cuenta'>
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="animate__animated animate__fadeIn">
             <Grid container>
             <Grid item xs={12} sx={{mt:2}}>
                 <TextField 
