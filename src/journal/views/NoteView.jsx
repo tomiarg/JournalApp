@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useForm } from "../../hooks/useForm"
 import { useEffect, useMemo, useRef } from "react"
 import { setActiveNote } from "../../store/journal/journalSlice"
-import { startSaveNote, startUploadingFiles } from "../../store/journal"
+import { startDeletingNote, startSaveNote, startUploadingFiles } from "../../store/journal"
 import Swal from "sweetalert2"
 import 'sweetalert2/dist/sweetalert2.css'
 
@@ -45,6 +45,10 @@ export const NoteView = () => {
         if(target.files === 0) return
         dispatch(startUploadingFiles(target.files))
 
+     }
+
+     const onDelete =() =>{
+        dispatch(startDeletingNote())
      }
   return (
     <Grid container direction='row' justifyContent='space-between'alignItems='center' sx={{mb:1}} className="animate__animated animate__fadeIn">
@@ -106,8 +110,13 @@ export const NoteView = () => {
             />
         </Grid>
         <Grid container justifyContent='end'>
-            <Button>
+            <Button
+                onClick={onDelete}
+                sx={{mt:'2'}}
+                color="error"
+            >
                 <DeleteOutline/>
+                Borrar
             </Button>
 
         </Grid>
